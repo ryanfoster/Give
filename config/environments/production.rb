@@ -1,6 +1,10 @@
 Give::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
+  APIKEY = '92dc8541a8694d3462e4abc3f61ab192'
+  PASSWORD = '292eee4fc9c20c3eebf70cf869b47cb4'
+  SHOPNAME = 'waters-bartoletti5697'
+  
+  ShopifyAPI::Base.site = "http://#{APIKEY}:#{PASSWORD}@#{SHOPNAME}.myshopify.com/admin"
   # Code is not reloaded between requests
   config.cache_classes = true
 
