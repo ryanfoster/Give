@@ -2,7 +2,7 @@ class ProductTagParser
   
   def self.extract_dates tags    
     t = tags.split(",")    
-    start_tag = t.find{ |s| s.index("[start]") }
+    start_tag = t.find{ |s| s.index("[begin]") }
     end_tag = t.find{ |s| s.index("[end]") }
     
     if start_tag && end_tag 
