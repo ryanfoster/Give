@@ -1,10 +1,13 @@
-Give::Application.configure do  
+Give::Application.configure do
+  
   
   APIKEY = '92dc8541a8694d3462e4abc3f61ab192'
   PASSWORD = '292eee4fc9c20c3eebf70cf869b47cb4'
   SHOPNAME = 'waters-bartoletti5697'
   
+  # Telling your shop who's boss.
   ShopifyAPI::Base.site = "http://#{APIKEY}:#{PASSWORD}@#{SHOPNAME}.myshopify.com/admin"
+
 
   # Settings specified here will take precedence over those in config/application.rb
 
