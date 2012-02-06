@@ -31,7 +31,7 @@ class ProductCountdown
   
  def self.is_avalible( start_date, end_date )
     
-    if (start_date <=> end_date) < 1 then raise "Start date must be before end" end
+    if (start_date <=> end_date) > -1 then raise "Start date must be before end" end
     
     avalible = false
     
