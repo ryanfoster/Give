@@ -1,12 +1,17 @@
 class ProductsController < ApplicationController
   
-  def update
-    product = ShopifyAPI::Product.find( params[:id] )
+  def update_all
+    product = ShopifyAPI::Product.all
     
-    start_date, end_date = ProductTagParser.extract_dates(product.tags)
-     
-     
+    product.each do |p|  
+      #begin     
+        ProductCountdown.update p
+      #rescue
+      #end
+    end
     
+     head :ok
+     
   end
 
 end

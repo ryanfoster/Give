@@ -1,9 +1,9 @@
 Give::Application.configure do
   
   
-  APIKEY = '92dc8541a8694d3462e4abc3f61ab192'
-  PASSWORD = '292eee4fc9c20c3eebf70cf869b47cb4'
-  SHOPNAME = 'waters-bartoletti5697'
+  APIKEY = 'f8f8a735e2eee52bb1685157410d177e'
+  PASSWORD = '166f18186ecac420d35ac31c574009e1'
+  SHOPNAME = 'bins-bogisich8445'
   
   # Telling your shop who's boss.
   ShopifyAPI::Base.site = "http://#{APIKEY}:#{PASSWORD}@#{SHOPNAME}.myshopify.com/admin"

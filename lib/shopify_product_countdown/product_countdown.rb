@@ -2,43 +2,58 @@ class ProductCountdown
   
   def self.update product
     
-     start_date, end_date = ProductTagParser.extract_dates(product.tags)
-          
+     begin
+      start_date, end_date = ProductTagParser.extract_dates(product.tags)    
+     rescue
+      start_date = Date.today + 1.days
+      end_date = Date.today + 2.days
+     end
+     
+     start_date += 0.seconds
+     end_date += (1.day - 1.seconds)
+     
      avalible = is_avalible(start_date, end_date)
      
-     set_meta_avalible(product, avalible)
+     set_meta(product, "avalible", avalible, "integer")
+     set_meta(product, "begin_date", start_date.inspect, "string")
+     set_meta(product, "begin_date_secs", start_date.to_i, "integer")
+     set_meta(product, "end_date", end_date.inspect, "string")
+     set_meta(product, "end_date_secs", end_date.to_i, "integer")     
     
   end
     
-  def self.get_meta_avalible product
-    product.metafields.find{|m| m.namespace=="countdown" && m.key == "avalible" }
+  def self.get_meta( product, key )
+    product.metafields.find{|m| m.namespace=="countdown" && m.key == key}
   end
   
-  def self.set_meta_avalible( product, avalible)
-    existing = get_meta_avalible(product)
-    avalible = avalible ? 1 : 0
+  def self.set_meta( product, key, value, value_type)
+    existing = get_meta(product, key)
     
     if existing       
-      existing.value = avalible
+      existing.value = value
       existing.save
     else
-      product.add_metafield( ShopifyAPI::Metafield.new(:namespace => "countdown", :key => "avalible", :value => avalible, :value_type => "integer") )
+      product.add_metafield( ShopifyAPI::Metafield.new(:namespace => "countdown", :key => key, :value => value, :value_type => value_type) )
     end
     
-    avalible
+    value
          
   end
   
  def self.is_avalible( start_date, end_date )
     
-    if (start_date <=> end_date) > -1 then raise "Start date must be before end" end
+    if (start_date <=> end_date) > 0 then raise "Start date must be before end" end
     
-    avalible = false
+    avalible = 0
     
-    today = Date.today
+    today = Date.today + 0.seconds
     
+    # if within active range 
     if start_date <= today && end_date > today
-      avalible = true  
+      avalible = 1  
+    # if in the past
+    elsif end_date < today
+      avalible = -1
     end
     
     avalible

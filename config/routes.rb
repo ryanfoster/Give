@@ -3,7 +3,7 @@ Give::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
-  match 'products/update/:id' => 'products#update'
+  match 'products/update/all/' => 'products#update_all'
    
   match 'webhooks/products/new' => 'webhook#product_new'
   match 'webhooks/products/update' => 'webhook#product_updated'
