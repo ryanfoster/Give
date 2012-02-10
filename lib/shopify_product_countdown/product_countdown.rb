@@ -5,8 +5,9 @@ class ProductCountdown
      begin
       start_date, end_date = ProductTagParser.extract_dates(product.tags)    
      rescue
-      start_date = Date.today + 1.days
-      end_date = Date.today + 2.days
+       # problem getting date? assume it was in the past
+      start_date = Date.today - 2.days
+      end_date = Date.today - 1.days
      end
      
      start_date += 0.seconds
@@ -17,8 +18,8 @@ class ProductCountdown
      set_meta(product, "begin_date_secs", start_date.to_i, "integer")
      set_meta(product, "end_date_secs", end_date.to_i, "integer")
        
-     set_meta(product, "begin_date", start_date.strftime("%a, %d %m %Y %H:%M:%S %Z"), "string")
-     set_meta(product, "end_date", end_date.strftime("%a, %d %m %Y %H:%M:%S %Z"), "string")
+     set_meta(product, "begin_date", start_date.strftime("%a, %d %b %Y %H:%M:%S %Z"), "string")
+     set_meta(product, "end_date", end_date.strftime("%a, %d %m %b %H:%M:%S %Z"), "string")
     
   end
     

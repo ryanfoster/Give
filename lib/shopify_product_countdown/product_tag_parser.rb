@@ -20,9 +20,10 @@ class ProductTagParser
     s[s.index("]")+1, s.length].strip
   end
   
-  def self.parse_to_date s
-    # assume uk date format, might need to change to mm/dd/yy later
-    Date.parse(s)
+  def self.parse_to_date s    
+    # assume us date format mm/dd/yy 
+    month, day, year = s.split("/")
+    Date.new(year.to_i, month.to_i, day.to_i)
   end
 
 end 
