@@ -12,9 +12,6 @@ class ProductCountdown
      start_date += 0.seconds
      end_date += (1.day - 1.seconds)
      
-     avalible = is_avalible(start_date, end_date)
-     
-     set_meta(product, "avalible", avalible, "integer")
      set_meta(product, "begin_date", start_date.inspect, "string")
      set_meta(product, "begin_date_secs", start_date.to_i, "integer")
      set_meta(product, "end_date", end_date.inspect, "string")
@@ -38,26 +35,6 @@ class ProductCountdown
     
     value
          
-  end
-  
- def self.is_avalible( start_date, end_date )
-    
-    if (start_date <=> end_date) > 0 then raise "Start date must be before end" end
-    
-    avalible = 0
-    
-    today = Date.today + 0.seconds
-    
-    # if within active range 
-    if start_date <= today && end_date > today
-      avalible = 1  
-    # if in the past
-    elsif end_date < today
-      avalible = -1
-    end
-    
-    avalible
-    
   end
   
 end
