@@ -12,10 +12,13 @@ class ProductCountdown
      start_date += 0.seconds
      end_date += (1.day - 1.seconds)
      
-     set_meta(product, "begin_date", start_date.inspect, "string")
+     # no point setting the date,
+     
      set_meta(product, "begin_date_secs", start_date.to_i, "integer")
-     set_meta(product, "end_date", end_date.inspect, "string")
-     set_meta(product, "end_date_secs", end_date.to_i, "integer")     
+     set_meta(product, "end_date_secs", end_date.to_i, "integer")
+       
+     set_meta(product, "begin_date", start_date.strftime("%a, %d %m %Y %H:%M:%S"), "string")
+     set_meta(product, "end_date", end_date.strftime("%a, %d %m %Y %H:%M:%S"), "string")
     
   end
     
