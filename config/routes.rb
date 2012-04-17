@@ -7,6 +7,8 @@ Give::Application.routes.draw do
    
   match 'webhooks/products/new' => 'webhook#product_new'
   match 'webhooks/products/update' => 'webhook#product_updated'
+  
+  match 'thetime' => 'time#index'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
